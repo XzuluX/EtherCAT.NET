@@ -51,6 +51,14 @@
       <PackagePath>runtimes/linux-x64/native</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="./../../artifacts/bin32/SOEM_wrapper/libsoem_wrapper.so" Link="runtimes/arm-x86/native/libsoem_wrapper.so">
+      <PackagePath>runtimes/arm-x86/native</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="./../../artifacts/bin64/SOEM_wrapper/libsoem_wrapper.so" Link="runtimes/arm-x64/native/libsoem_wrapper.so">
+      <PackagePath>runtimes/arm-x64/native</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
