@@ -574,15 +574,14 @@ namespace EtherCAT.NET
 
         public static int SdoWrite(IntPtr context, UInt16 slaveIndex, UInt16 sdoIndex, byte sdoSubIndex, IEnumerable<object> dataset)
         {
-            return EcHL.SdoWrite(
-                context,
-                slaveIndex,
-                sdoIndex,
-                sdoSubIndex,
-                dataset.SelectMany(value => value.ToByteArray()).ToArray(),
-                Convert.ToUInt32(dataset.Count()),
-                dataset.Select(data => Marshal.SizeOf(data)).ToArray()
-            );
+
+            byte[] datasetByte = dataset.SelectMany(value => value.ToByteArray()).ToArray();
+            uint datasetCount = Convert.ToUInt32(dataset.Count());
+            int[] byteCount = dataset.Select(data => Marshal.SizeOf(data)).ToArray();
+
+            int wk = EcHL.SdoWrite(context, slaveIndex, sdoIndex, sdoSubIndex, datasetByte, datasetCount, byteCount);
+
+            return 1;
         }
 
         public static int SdoRead(IntPtr context, UInt16 slaveIndex, UInt16 sdoIndex, byte sdoSubIndex, ref byte[] dataset)
